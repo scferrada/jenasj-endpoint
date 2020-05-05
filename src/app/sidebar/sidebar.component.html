@@ -1,0 +1,15 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="sidebar">
+<button mat-fab color="primary" style="margin: 1px;" (click)="openExampleDialog()" matTooltip="See Query Examples">
+    <mat-icon inline=true, class="material-icons md-24">folder_open</mat-icon>
+</button><br>
+<button mat-fab color="primary" style="margin: 1px;" (click)="deleteQuery()" matTooltip="Delete Query">
+    <mat-icon inline=true, class="material-icons md-24">delete</mat-icon>
+</button><br>
+<button mat-fab color="primary" style="margin: 1px;" matTooltip="Share your query">
+    <mat-icon inline=true, class="material-icons md-24">share</mat-icon>
+</button><br>
+<button mat-fab color="accent" style="margin: 1px;" (click)="submitQuery()" matTooltip="Execute Query">
+    <mat-icon inline=true, class="material-icons md-36">play_arrow</mat-icon>
+</button>
+</div>

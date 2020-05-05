@@ -1,0 +1,8 @@
+.code {
+    height: 300px;
+    width: 98%;
+}
+
+ngs-code-editor{
+    height: inherit;
+}

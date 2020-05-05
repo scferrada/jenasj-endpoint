@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app-simjoin"
+    }
+  },
+  "defaultProject": "app-simjoin",
+  "cli": {
+    "analytics": false
+  }
 }
