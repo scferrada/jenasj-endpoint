@@ -12,6 +12,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QueryEditorComponent } from './query-editor/query-editor.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExampleDialogComponent } from './example-dialog/example-dialog.component';
+import { QueryResultsComponent } from './query-results/query-results.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ExampleDialogComponent } from './example-dialog/example-dialog.componen
     ToolbarComponent,
     QueryEditorComponent,
     SidebarComponent,
-    ExampleDialogComponent
+    ExampleDialogComponent,
+    QueryResultsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -7,11 +7,13 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class QueryService {
-  URL: string = 'localhost:8080/sparql';
+  URL: string = 'http://localhost:8080/sparql/mock/';
   constructor(private http: HttpClient) { }
 
   executeQuery(query: string){
-    return this.http.get(this.URL, {params: {q: query}});
+    let body = new HttpParams();
+    body = body.set('q', query.trim());
+    return this.http.post(this.URL, body);
   }
 
 }

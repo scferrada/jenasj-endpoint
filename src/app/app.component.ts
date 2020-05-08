@@ -11,6 +11,7 @@ export class AppComponent {
 
   deleteSubject: Subject<void> = new Subject<void>();
   submitSubject: Subject<void> = new Subject<void>();
+  renderSubject: Subject<Object> = new Subject<Object>();
 
   deleteQuery(){
     this.deleteSubject.next();
@@ -18,6 +19,10 @@ export class AppComponent {
 
   submitQuery(){
     this.submitSubject.next();
+  }
+
+  renderResults(o: Object){
+    this.renderSubject.next(o);
   }
 
 }

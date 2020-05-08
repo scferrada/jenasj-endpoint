@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
   }
 
   openExampleDialog(){
-    let exampleDialog = this.dialog.open(ExampleDialogComponent);
+    this.dialog.open(ExampleDialogComponent);
   }
 
 }

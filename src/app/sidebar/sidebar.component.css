@@ -3,4 +3,9 @@
 
 .sidebar {
     background-color: #fafafa;
+    height: 300px;
+}
+
+button {
+    margin: 1.2em 1px 1px 1px;
 }

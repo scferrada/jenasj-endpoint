@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CodeModel } from '@ngstack/code-editor';
 import { Subscription, Observable } from 'rxjs';
 import { QueryService } from '../query.service';
@@ -15,7 +15,8 @@ export class QueryEditorComponent implements OnInit {
 
   @Input() eventDelete: Observable<void>;
   @Input() eventSubmit: Observable<void>;
-  queryResult: any;
+
+  @Output() submitResults = new EventEmitter<Object>();
 
   constructor(private queryService: QueryService) { }
 
@@ -28,7 +29,12 @@ export class QueryEditorComponent implements OnInit {
     );
   }
   submitText(): void {
-    this.queryService.executeQuery(this.codeModel.value);
+    this.queryService.executeQuery(this.codeModel.value)
+    .subscribe(x => {this.emitQueryResult(x)});
+  }
+
+  emitQueryResult(x: Object) {
+    this.submitResults.emit(x);
   }
 
   ngOnDestroy(){
@@ -53,7 +59,7 @@ export class QueryEditorComponent implements OnInit {
       {?c1  wdt:P31/wdt:P279* wd:Q6256 ; #countries
             wdt:P2250 ?lifex1 ; wdt:P2131 ?nGDP1 ;
             wdt:P4010 ?GDP1 ; wdt:P2219 ?growth1 ;
-            wdt:P1081 ?hd1i ; wdt:P361 wd:Q12585 } #LATAM
+            wdt:P1081 ?hdi1 ; wdt:P361 wd:Q12585 } #LATAM
       SIMILARITY JOIN
       ON (?lifex1, ?nGDP1, ?GDP1, ?growth1, ?hdi1) 
          (?lifex2, ?nGDP2, ?GDP2, ?growth2, ?hdi2)
@@ -61,7 +67,7 @@ export class QueryEditorComponent implements OnInit {
       {?c2  wdt:P31/wdt:P279* wd:Q6256 ; #countries
             wdt:P2250 ?lifex2 ; wdt:P2131 ?nGDP2 ;
             wdt:P4010 ?GDP2 ; wdt:P2219 ?growth2 ;
-            wdt:P1081 ?hd2i ; wdt:P30 wd:Q46 }} #Europe`,
+            wdt:P1081 ?hdi2 ; wdt:P30 wd:Q46 }} #Europe`,
   };
 
   options = {

@@ -1,9 +1,15 @@
+<div>
 <app-toolbar></app-toolbar>
-<mat-drawer-container>
-<mat-drawer mode="side" opened>
-  <app-sidebar (deletetxt)=deleteQuery(); (submittxt)="submitQuery()"></app-sidebar>
-</mat-drawer>
-<mat-drawer-content>
-<app-query-editor [eventDelete]="deleteSubject.asObservable()" [eventSubmit]="submitSubject.asObservable()"></app-query-editor>
-</mat-drawer-content>
+<mat-drawer-container class=".example-container">
+  <mat-drawer mode="side" opened>
+    <app-sidebar (deletetxt)="deleteQuery();" (submittxt)="submitQuery()"></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-query-editor (submitResults)="renderResults($event);" 
+                      [eventDelete]="deleteSubject.asObservable()" 
+                      [eventSubmit]="submitSubject.asObservable()">
+    </app-query-editor>
+  </mat-drawer-content>
 </mat-drawer-container>
+<app-query-results [eventRender]="renderSubject.asObservable()"></app-query-results>
+</div>
