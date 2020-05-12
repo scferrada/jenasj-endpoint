@@ -3,6 +3,7 @@ import { CodeModel } from '@ngstack/code-editor';
 import { Subscription, Observable } from 'rxjs';
 import { QueryService } from '../query.service';
 import { ExampleQuery } from '../model/exquery';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-query-editor',
@@ -21,18 +22,36 @@ export class QueryEditorComponent implements OnInit {
 
   @Output() submitResults = new EventEmitter<Object>();
 
-  constructor(private queryService: QueryService) { }
+  constructor(private queryService: QueryService, private routes: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.eventDeleteSubscription = this.eventDelete.subscribe(
       ()=>this.deleteText()
     );
     this.eventSubmitSubscription = this.eventSubmit.subscribe(
-      ()=>this.submitText()
+      ()=>{
+        let text: string = this.formatQuery(this.codeModel.value);
+        if(text){
+          this.submitText(text);
+          this.routes.navigate([], {queryParams: {q: text}, queryParamsHandling: 'merge'});
+        } else {
+          this.routes.navigate([], {});
+        }
+      }
     );
     this.exampleSelectSubscription = this.exampleSelect.subscribe(
       q => this.replaceText(q.query)
     );
+  }
+  formatQuery(value: string): string {
+    let parts = value.split("\n");
+    let edited_parts = [];
+    parts.forEach(element => {
+      let n = element.indexOf("#");
+      edited_parts.push(element.substring(0, n==-1? element.length: n).trim());
+    });
+    let joint = edited_parts.join(" ");
+    return joint;
   }
 
   replaceText(query: string): void {
@@ -42,9 +61,10 @@ export class QueryEditorComponent implements OnInit {
       value: query
     }
   }
-  submitText(): void {
-    this.queryService.executeQuery(this.codeModel.value)
-    .subscribe(x => {this.emitQueryResult(x)});
+  submitText(text: string): void {
+    if(text)
+      this.queryService.executeQuery(text)
+        .subscribe(x => {this.emitQueryResult(x)});
   }
 
   emitQueryResult(x) {
@@ -55,6 +75,7 @@ export class QueryEditorComponent implements OnInit {
   ngOnDestroy(){
     this.eventDeleteSubscription.unsubscribe();
     this.eventSubmitSubscription.unsubscribe();
+    this.exampleSelectSubscription.unsubscribe();
   }
 
   deleteText(){

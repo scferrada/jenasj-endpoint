@@ -1,1 +1,8 @@
-<p>share-dialog works!</p>
+<div class="dialog">
+<mat-form-field style="width: 100%;">
+    <mat-label>Share URL: </mat-label>
+    <input matInput [value]="share_url" #url (focus)="$event.target.select()">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="copy(url.value)" mat-dialog-close [matTooltip]="toasttxt">Copy to Clipboard</button>
+</div>

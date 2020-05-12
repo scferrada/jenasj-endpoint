@@ -8,6 +8,7 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSidenavModule,
     MatTooltipModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule
   ]
 })
 export class AppMaterialModule { }
