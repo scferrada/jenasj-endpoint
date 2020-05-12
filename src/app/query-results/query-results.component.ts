@@ -18,8 +18,8 @@ export class QueryResultsComponent implements OnInit {
   ngOnInit(): void {
     this.eventSubmitSubscription = this.eventRender.subscribe(
       x => {
-        this.result = x; 
-        console.log(x);
+        this.result = x;
+        this.displayCols = [];
         for(var key in x[0]){
           this.displayCols.push(key);
         }
