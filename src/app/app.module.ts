@@ -13,6 +13,8 @@ import { QueryEditorComponent } from './query-editor/query-editor.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExampleDialogComponent } from './example-dialog/example-dialog.component';
 import { QueryResultsComponent } from './query-results/query-results.component';
+import { HelpDialogComponent } from './help-dialog/help-dialog.component';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { QueryResultsComponent } from './query-results/query-results.component';
     QueryEditorComponent,
     SidebarComponent,
     ExampleDialogComponent,
-    QueryResultsComponent
+    QueryResultsComponent,
+    HelpDialogComponent,
+    ShareDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ExampleDialogComponent } from '../example-dialog/example-dialog.component';
+import { ExampleQuery } from '../model/exquery';
+import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,6 +10,8 @@ import { ExampleDialogComponent } from '../example-dialog/example-dialog.compone
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+  
+  @Output() selectexample = new EventEmitter<ExampleQuery>();
 
   constructor(public dialog: MatDialog) { }
 
@@ -15,7 +19,15 @@ export class ToolbarComponent implements OnInit {
   }
 
   openExampleDialog(){
-    let exampleDialog = this.dialog.open(ExampleDialogComponent);
+    let dialogRef = this.dialog.open(ExampleDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined)
+      this.selectexample.emit(result)
+    });
+  }
+
+  openHelpDialog(){
+    this.dialog.open(HelpDialogComponent);
   }
 
 }

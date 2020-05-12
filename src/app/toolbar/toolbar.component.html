@@ -1,13 +1,16 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+<section class="mat-typography">
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <h1 style="margin: 1em;">Jena-SJ Query Service </h1>
+      <h1>Jena-SJ Query Service </h1>
       <button mat-stroked-button color="link" style="margin: 1em;" (click)="openExampleDialog()" matTooltip="See query examples">
           <mat-icon inline=true>folder_open</mat-icon> Examples
       </button>
-      <button mat-stroked-button color="link" style="margin: 1em;" matTooltip="Get Help">
+      <button mat-stroked-button color="link" style="margin: 1em;" (click)="openHelpDialog()" matTooltip="Get Help">
         <mat-icon inline=true>help_outline</mat-icon> Help
       </button>
     </mat-toolbar-row>
 </mat-toolbar>
+</section>
   

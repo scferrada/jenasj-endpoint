@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ExampleDialogComponent } from '../example-dialog/example-dialog.component';
+import { ExampleQuery } from '../model/exquery';
+import { ShareDialogComponent } from '../share-dialog/share-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +18,7 @@ export class SidebarComponent implements OnInit {
 
   @Output() deletetxt = new EventEmitter<void>();
   @Output() submittxt = new EventEmitter<void>();
-
+  @Output() selectexample = new EventEmitter<ExampleQuery>();
 
   deleteQuery(){
     this.deletetxt.emit();
@@ -27,7 +29,16 @@ export class SidebarComponent implements OnInit {
   }
 
   openExampleDialog(){
-    this.dialog.open(ExampleDialogComponent);
+    const dialogRef = this.dialog.open(ExampleDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != undefined)  
+        this.selectexample.emit(result)
+      }
+      );
+  }
+
+  openShareDialog(){
+    this.dialog.open(ShareDialogComponent);
   }
 
 }

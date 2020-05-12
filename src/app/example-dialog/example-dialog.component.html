@@ -1,1 +1,9 @@
-<p>example-dialog works!</p>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+<section class="mat-typography">
+<h2>Example Similarity SPARQL Queries</h2>
+<ul class="examples">
+  <li *ngFor="let ex of qexamples" [matTooltip]="ex.description" [mat-dialog-close]="ex">
+    {{ex.name}}
+  </li>
+</ul>
+</section>

@@ -1,13 +1,17 @@
 <div>
-<app-toolbar></app-toolbar>
+<app-toolbar (selectexample)="selectExample($event)"></app-toolbar>
 <mat-drawer-container class=".example-container">
   <mat-drawer mode="side" opened>
-    <app-sidebar (deletetxt)="deleteQuery();" (submittxt)="submitQuery()"></app-sidebar>
+    <app-sidebar (deletetxt)="deleteQuery()" 
+                 (submittxt)="submitQuery()" 
+                 (selectexample)="selectExample($event)">
+    </app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
     <app-query-editor (submitResults)="renderResults($event);" 
                       [eventDelete]="deleteSubject.asObservable()" 
-                      [eventSubmit]="submitSubject.asObservable()">
+                      [eventSubmit]="submitSubject.asObservable()"
+                      [exampleSelect]="exampleSubject.asObservable()">
     </app-query-editor>
   </mat-drawer-content>
 </mat-drawer-container>

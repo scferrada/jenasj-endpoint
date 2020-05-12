@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CodeModel } from '@ngstack/code-editor';
 import { Subscription, Observable } from 'rxjs';
 import { QueryService } from '../query.service';
+import { ExampleQuery } from '../model/exquery';
 
 @Component({
   selector: 'app-query-editor',
@@ -12,9 +13,11 @@ export class QueryEditorComponent implements OnInit {
 
   private eventDeleteSubscription: Subscription;
   private eventSubmitSubscription: Subscription;
+  private exampleSelectSubscription: Subscription;
 
   @Input() eventDelete: Observable<void>;
   @Input() eventSubmit: Observable<void>;
+  @Input() exampleSelect: Observable<ExampleQuery>;
 
   @Output() submitResults = new EventEmitter<Object>();
 
@@ -27,6 +30,17 @@ export class QueryEditorComponent implements OnInit {
     this.eventSubmitSubscription = this.eventSubmit.subscribe(
       ()=>this.submitText()
     );
+    this.exampleSelectSubscription = this.exampleSelect.subscribe(
+      q => this.replaceText(q.query)
+    );
+  }
+
+  replaceText(query: string): void {
+    this.codeModel = {
+      language: 'sql',
+      uri: 'main.json',
+      value: query
+    }
   }
   submitText(): void {
     this.queryService.executeQuery(this.codeModel.value)

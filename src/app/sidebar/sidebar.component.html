@@ -6,10 +6,10 @@
 <button mat-fab color="primary" (click)="deleteQuery()" matTooltip="Delete Query">
     <mat-icon inline=true, class="material-icons md-24">delete</mat-icon>
 </button><br>
-<button mat-fab color="primary" matTooltip="Share your query">
+<button mat-fab color="primary" (click)="openShareDialog()" matTooltip="Share your query">
     <mat-icon inline=true, class="material-icons md-24">share</mat-icon>
 </button><br>
 <button mat-fab color="accent" (click)="submitQuery()" matTooltip="Execute Query">
-    <mat-icon inline=true, class="material-icons md-36">play_arrow</mat-icon>
+    <mat-icon inline=true, class="material-icons md-48">play_arrow</mat-icon>
 </button>
 </div>

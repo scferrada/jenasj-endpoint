@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { examples } from '../model/examples';
 
 @Component({
   selector: 'app-example-dialog',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./example-dialog.component.css']
 })
 export class ExampleDialogComponent implements OnInit {
+
+  qexamples = examples;
 
   constructor() { }
 
