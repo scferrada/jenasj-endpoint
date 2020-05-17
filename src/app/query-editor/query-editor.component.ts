@@ -47,7 +47,11 @@ export class QueryEditorComponent implements OnInit {
     let parts = value.split("\n");
     let edited_parts = [];
     parts.forEach(element => {
-      let n = element.indexOf("#");
+      if(element.toLowerCase().indexOf("prefix")!=-1 || element.toLowerCase().indexOf("service")!=-1){
+        edited_parts.push(element.trim());
+        return;
+      }
+      let n = element.lastIndexOf("#");
       edited_parts.push(element.substring(0, n==-1? element.length: n).trim());
     });
     let joint = edited_parts.join(" ");
@@ -107,15 +111,5 @@ SELECT ?c1 ?c2 ?d WHERE {
         wdt:P4010 ?GDP2 ; wdt:P2219 ?growth2 ;
         wdt:P1081 ?hdi2 ; wdt:P30 wd:Q46 }} #Europe
         `,
-  };
-
-  options = {
-    contextmenu: true,
-    scrollBeyondLastLine: false,
-    scrollBeyondLastColumn: 0,
-    scrollbar:{
-      handleMouseWheel: true,
-      horizontal: 'hidden',
-    },
   };
 }

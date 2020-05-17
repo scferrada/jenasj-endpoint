@@ -20,15 +20,17 @@ export class QueryResultsComponent implements OnInit {
       x => {
         this.result = x;
         this.displayCols = [];
-        for(var key in x[0]){
-          this.displayCols.push(key);
-        }
+        Object.keys(x[0]).sort().forEach(key => this.displayCols.push(key));
       }
     );
   }
 
   ngOnDestroy(): void{
     this.eventSubmitSubscription.unsubscribe();
+  }
+
+  isString(x: any): boolean{
+    return typeof x == 'string';
   }
 
 }

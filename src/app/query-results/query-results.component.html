@@ -3,10 +3,10 @@
         <ng-container *ngFor="let col of displayCols; let colindex = index" matColumnDef="{{col}}">
             <th mat-header-cell *matHeaderCellDef>?{{col}}</th>
             <td mat-cell *matCellDef="let element">
-                <div *ngIf="element[col].startsWith('<http://'); else elseBlock">
+                <div *ngIf="(isString(element[col]) && element[col].startsWith('<http://')); else elseBlock">
                     <a [href]="element[col].substring(1, element[col].length-1)" target="_blank">{{element[col].substring(1, element[col].length-1)}}</a>
                 </div>
-                <ng-template #elseBlock>{{element[col]}}</ng-template>
+                <ng-template #elseBlock>{{element[col] | number}}</ng-template>
             </td>
         </ng-container>
 
